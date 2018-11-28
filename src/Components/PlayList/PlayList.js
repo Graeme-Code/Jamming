@@ -9,7 +9,7 @@ render () {
   return (
     <div className="Playlist">
       <input defaultValue={'New PlayList'}/>
-    {/*}  <!-- Add a TrackList component --> */}
+      <TrackList tracks={this.props.playlistTracks}/>
       <a className="Playlist-save">SAVE TO SPOTIFY</a>
     </div>
     );

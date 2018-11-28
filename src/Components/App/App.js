@@ -9,29 +9,42 @@ class App extends Component {
   super(props);
 
   this.state = {
-      searchResults:[
-        {
-          id: '001',
-          name: 'Track 001',
-          artist: 'Alan',
-          album: 'The Very, Very Best of AB'
-        },
-        {
-          id: '002',
-          name: 'Track 002',
-          artist: 'Alan',
-          album: 'The Very, Very Best of AB'
-        },
-        {
-          id: '003',
-          name: 'Track 003',
-          artist: 'Alan',
-          album: 'The Very, Very Best of AB'
-        }
-      ]
-    }
-
-
+        searchResults:[
+          {
+            id: '001',
+            name: 'Track 001',
+            artist: 'Alan',
+            album: 'The Very, Very Best of AB'
+          },
+          {
+            id: '002',
+            name: 'Track 002',
+            artist: 'Alan',
+            album: 'The Very, Very Best of AB'
+          },
+          {
+            id: '003',
+            name: 'Track 003',
+            artist: 'Alan',
+            album: 'The Very, Very Best of AB'
+          }
+        ],
+        playlistTracks:[
+          {
+            id: '001',
+            name: 'Track 001',
+            artist: 'Alan',
+            album: 'The Very, Very Best of AB'
+          },
+          {
+            id: '005',
+            name: 'Track 005',
+            artist: 'Alan',
+            album: 'The Very, Very Best of AB'
+          }
+        ],
+        playlistName:'Whatta Plalist'
+      }
 
 }
 
@@ -44,7 +57,7 @@ class App extends Component {
         <div className="App-playlist">
         <SearchResults searchResults={this.state.searchResults}/>
 
-  {/*        <!-- Add a Playlist component -->       */}
+      <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>    
         </div>
       </div>
     </div>
