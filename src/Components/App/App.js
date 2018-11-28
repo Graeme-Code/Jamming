@@ -8,9 +8,32 @@ class App extends Component {
   constructor(props) {
   super(props);
 
-  this.state = {searchResults: ["name", "artist", "album", "id"]};
+  this.state = {
+      searchResults:[
+        {
+          id: '001',
+          name: 'Track 001',
+          artist: 'Alan',
+          album: 'The Very, Very Best of AB'
+        },
+        {
+          id: '002',
+          name: 'Track 002',
+          artist: 'Alan',
+          album: 'The Very, Very Best of AB'
+        },
+        {
+          id: '003',
+          name: 'Track 003',
+          artist: 'Alan',
+          album: 'The Very, Very Best of AB'
+        }
+      ]
+    }
 
-  }
+
+
+}
 
   render() {
     return (
