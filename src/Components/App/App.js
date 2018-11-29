@@ -7,6 +7,7 @@ import { SearchResults } from '../SearchResults/SearchResults.js'
 class App extends Component {
   constructor(props) {
   super(props);
+  this.addTrack = this.addTrack.bind(this);
 
   this.state = {
         searchResults:[
@@ -48,6 +49,16 @@ class App extends Component {
 
 }
 
+addTrack(track) {
+  if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
+  return;
+}else {
+  this.state.playlistTracks.push(track)
+  this.setState({playlist: this.state.playlistTracks})
+}
+//If shit starts breaking, its a problem with this method...
+}
+
   render() {
     return (
       <div>
@@ -57,7 +68,7 @@ class App extends Component {
         <div className="App-playlist">
         <SearchResults searchResults={this.state.searchResults}/>
 
-      <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>    
+      <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
         </div>
       </div>
     </div>
