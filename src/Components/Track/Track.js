@@ -8,7 +8,7 @@ constructor(props){
 }
 
 addTrack() {
-  this.props.onTrack(this.props.track);
+  this.props.onAdd(this.props.track);
   //I'm not sure how this works...
 }
 

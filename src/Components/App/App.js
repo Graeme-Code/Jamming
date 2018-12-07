@@ -56,7 +56,7 @@ addTrack(track) {
   this.state.playlistTracks.push(track)
   this.setState({playlist: this.state.playlistTracks})
 }
-//If shit starts breaking, its a problem with this method...
+//If it starts breaking, its a problem with this method...
 }
 
   render() {
@@ -66,7 +66,7 @@ addTrack(track) {
       <div className="App">
     {/*    <!-- Add a SearchBar component --> */}
         <div className="App-playlist">
-        <SearchResults searchResults={this.state.searchResults}/>
+        <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
 
       <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
         </div>
