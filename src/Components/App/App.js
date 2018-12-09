@@ -7,6 +7,7 @@ import { SearchResults } from '../SearchResults/SearchResults.js'
 class App extends Component {
   constructor(props) {
   super(props);
+  this.addTrack = this.addTrack.bind(this);
 
   this.state = {
         searchResults:[
@@ -48,6 +49,16 @@ class App extends Component {
 
 }
 
+addTrack(track) {
+  let isRemoval = false;
+  if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
+  return;
+}else {
+  this.state.playlistTracks.push(track)
+  this.setState({playlist: this.state.playlistTracks})
+      }
+}
+
   render() {
     return (
       <div>
@@ -55,9 +66,9 @@ class App extends Component {
       <div className="App">
     {/*    <!-- Add a SearchBar component --> */}
         <div className="App-playlist">
-        <SearchResults searchResults={this.state.searchResults}/>
+        <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} isRemoval={this.isRemoval}/>
 
-      <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>    
+      <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
         </div>
       </div>
     </div>
