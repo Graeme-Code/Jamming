@@ -7,9 +7,16 @@ constructor(props){
   this.addTrack = this.addTrack.bind(this);
 }
 
+renderAction()
+  {
+    if(this.props.isRemoval){
+      return (<a className="Track-action" onClick={this.removeTrack}>-</a>)
+    }else {
+      return (<a className="Track-action" onClick={this.addTrack}>+</a>)}
+  }
+
 addTrack() {
   this.props.onAdd(this.props.track);
-  //I'm not sure how this works...
 }
 
 
@@ -17,15 +24,14 @@ addTrack() {
 
 
 render () {
-let isRemoval;
 
-    return (
+  return (
       <div className="Track">
         <div className="Track-information">
           <h3>{this.props.track.name}</h3>
           <p>{this.props.track.artist}|{this.props.track.album}</p>
         </div>
-        <a className="Track-action">{isRemoval ? '-' : (<a onClick={this.addTrack}>+</a>)}</a>
+        <a className="Track-action">{this.renderAction()}</a>
       </div>
     );
   }

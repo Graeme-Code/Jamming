@@ -50,13 +50,13 @@ class App extends Component {
 }
 
 addTrack(track) {
+  let isRemoval = false;
   if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
   return;
 }else {
   this.state.playlistTracks.push(track)
   this.setState({playlist: this.state.playlistTracks})
-}
-//If it starts breaking, its a problem with this method...
+      }
 }
 
   render() {
@@ -66,7 +66,7 @@ addTrack(track) {
       <div className="App">
     {/*    <!-- Add a SearchBar component --> */}
         <div className="App-playlist">
-        <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
+        <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} isRemoval={this.isRemoval}/>
 
       <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
         </div>
