@@ -8,6 +8,8 @@ class App extends Component {
   constructor(props) {
   super(props);
   this.addTrack = this.addTrack.bind(this);
+  this.removeTrack = this.removeTrack.bind(this);
+
 
   this.state = {
         searchResults:[
@@ -49,26 +51,47 @@ class App extends Component {
 
 }
 
+
+
+
 addTrack(track) {
-  let isRemoval = false;
   if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
   return;
 }else {
   this.state.playlistTracks.push(track)
-  this.setState({playlist: this.state.playlistTracks})
+  this.setState({playlist: this.state.playlistTracks,
+                 })
       }
 }
 
+removeTrack(track) {
+  let tracks = this.state.playlistTracks;
+    tracks = tracks.filter(current => current.id !== track.id);
+    this.setState({ playlistTracks: tracks });
+}
+
+
   render() {
+
+
     return (
       <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
+
+
       <div className="App">
     {/*    <!-- Add a SearchBar component --> */}
         <div className="App-playlist">
-        <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} isRemoval={this.isRemoval}/>
+        <SearchResults searchResults={this.state.searchResults}
+                       onAdd={this.addTrack}
+                       isRemoval={false}
+                       />
 
-      <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
+      <PlayList playlistName={this.state.playlistName}
+                playlistTracks={this.state.playlistTracks}
+                onRemove={this.removeTrack}
+                isRemoval={true}
+                />
         </div>
       </div>
     </div>
