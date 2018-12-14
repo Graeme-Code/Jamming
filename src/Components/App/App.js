@@ -11,6 +11,7 @@ class App extends Component {
   this.removeTrack = this.removeTrack.bind(this);
   this.updatePlaylistName = this.updatePlaylistName.bind(this);
   this.savePlaylist = this.savePlaylist.bind(this);
+  this.search = this.search.bind(this);
 
 
   this.state = {
@@ -81,6 +82,15 @@ savePlaylist() {
   let tracklist = this.state.playlistTracks;
   let trackURIs=[];
   trackURIs.push(tracklist);
+//this bit resets the state
+  this.setState({playlistName: 'New Playlist',
+                 playlistTracks: []
+      });
+}
+
+search(term) {
+  console.log(term);
+  //update search state
 }
 
 
@@ -89,11 +99,11 @@ savePlaylist() {
 
     return (
       <div>
-      <h1>Ja{this.state.playlistName}<span className="highlight">mmm</span>ing</h1>
+      <h1>Ja<span className="highlight">mmm</span>ing</h1>
 
 
       <div className="App">
-    {/*    <!-- Add a SearchBar component --> */}
+        <SearchBar  onSearch={this.search}/>
         <div className="App-playlist">
         <SearchResults searchResults={this.state.searchResults}
                        onAdd={this.addTrack}
