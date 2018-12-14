@@ -81,6 +81,10 @@ savePlaylist() {
   let tracklist = this.state.playlistTracks;
   let trackURIs=[];
   trackURIs.push(tracklist);
+//this bit resets the state
+  this.setState({playlistName: 'New Playlist',
+                 playlistTracks: []
+      });
 }
 
 
