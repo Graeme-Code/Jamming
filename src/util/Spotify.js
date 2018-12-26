@@ -23,10 +23,38 @@ if(accessToken){
       window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUrl}`;
 }
 
+},
+
+search(term) {
+const accessToken = Spotify.getAccessToken();
+return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }}).then(response => {
+              if(response.ok) {
+                return response.json();
+              } else {
+                console.log('API request failed');
+              }
+            }).then(
+            jsonResponse => {
+            if(!jsonResponse.tracks) {
+                return [];
+            }
+            return jsonResponse.tracks.items.map(track => ({
+                id: track.id,
+                name: track.name,
+                artist: track.artists[0].name,
+                album: track.album.name,
+                uri: track.uri
+            }));
+          });
+
+}
 }
 
 
-};
+
 
 
 

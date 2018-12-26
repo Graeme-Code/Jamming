@@ -58,12 +58,12 @@ savePlaylist() {
 }
 
 search(term) {
-  console.log(term);
+  Spotify.search(term).then(searchResults => {
+     this.setState({ searchResults: searchResults })
+   });
 }
 
-spotifyLogin(){
-  Spotify.getAccessToken();
-}
+
 
 
   render() {
@@ -75,8 +75,8 @@ spotifyLogin(){
 
 
       <div className="App">
-        <SearchBar  onSearch={this.search}/>
-        <button type="button" onclick={this.spotifyLogin()}>Click Me!</button>
+        <SearchBar  onSearch={this.search} />
+
         <div className="App-playlist">
         <SearchResults searchResults={this.state.searchResults}
                        onAdd={this.addTrack}
