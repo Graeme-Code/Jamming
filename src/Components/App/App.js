@@ -3,6 +3,7 @@ import './App.css';
 import { PlayList } from '../PlayList/PlayList.js';
 import { SearchBar } from '../SearchBar/SearchBar.js';
 import { SearchResults } from '../SearchResults/SearchResults.js'
+import Spotify from '../../util/Spotify.js'
 
 class App extends Component {
   constructor(props) {
@@ -15,42 +16,10 @@ class App extends Component {
 
 
   this.state = {
-        searchResults:[
-          {
-            id: '001',
-            name: 'Track 001',
-            artist: 'Alan',
-            album: 'The Very, Very Best of AB'
-          },
-          {
-            id: '002',
-            name: 'Track 002',
-            artist: 'Alan',
-            album: 'The Very, Very Best of AB'
-          },
-          {
-            id: '003',
-            name: 'Track 003',
-            artist: 'Alan',
-            album: 'The Very, Very Best of AB'
-          }
-        ],
-        playlistTracks:[
-          {
-            id: '001',
-            name: 'Track 001',
-            artist: 'Alan',
-            album: 'The Very, Very Best of AB'
-          },
-          {
-            id: '005',
-            name: 'Track 005',
-            artist: 'Alan',
-            album: 'The Very, Very Best of AB'
-          }
-        ],
-        playlistName:'Whatta Plalist'
-      }
+    searchResults: [],
+    playlistName: 'New Playlist',
+    playlistTracks: []
+  }
 
 }
 
@@ -90,7 +59,10 @@ savePlaylist() {
 
 search(term) {
   console.log(term);
-  //update search state
+}
+
+spotifyLogin(){
+  Spotify.getAccessToken();
 }
 
 
@@ -104,6 +76,7 @@ search(term) {
 
       <div className="App">
         <SearchBar  onSearch={this.search}/>
+        <button type="button" onclick={this.spotifyLogin()}>Click Me!</button>
         <div className="App-playlist">
         <SearchResults searchResults={this.state.searchResults}
                        onAdd={this.addTrack}
