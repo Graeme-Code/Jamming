@@ -46,16 +46,15 @@ updatePlaylistName(name) {
   this.setState({playlistName: name})
 }
 
-//not too sure what argument this should take, if any
+
 savePlaylist() {
-  let tracklist = this.state.playlistTracks;
-  let trackURIs=[];
-  trackURIs.push(tracklist);
-//this bit resets the state
-  this.setState({playlistName: 'New Playlist',
-                 playlistTracks: []
-      });
-}
+    const trackURIs = this.state.playlistTracks.map(track => track.uri);
+    Spotify.savePlaylist(this.state.playlistName, trackURIs);
+    this.setState({
+        playlistName: 'New Playlist',
+        playlistTracks: []
+     });
+  }
 
 search(term) {
   Spotify.search(term).then(searchResults => {
