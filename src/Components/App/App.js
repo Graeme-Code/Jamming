@@ -46,24 +46,23 @@ updatePlaylistName(name) {
   this.setState({playlistName: name})
 }
 
-//not too sure what argument this should take, if any
+
 savePlaylist() {
-  let tracklist = this.state.playlistTracks;
-  let trackURIs=[];
-  trackURIs.push(tracklist);
-//this bit resets the state
-  this.setState({playlistName: 'New Playlist',
-                 playlistTracks: []
-      });
-}
+    const trackURIs = this.state.playlistTracks.map(track => track.uri);
+    Spotify.savePlaylist(this.state.playlistName, trackURIs);
+    this.setState({
+        playlistName: 'New Playlist',
+        playlistTracks: []
+     });
+  }
 
 search(term) {
-  console.log(term);
+  Spotify.search(term).then(searchResults => {
+     this.setState({ searchResults: searchResults })
+   });
 }
 
-spotifyLogin(){
-  Spotify.getAccessToken();
-}
+
 
 
   render() {
@@ -75,8 +74,8 @@ spotifyLogin(){
 
 
       <div className="App">
-        <SearchBar  onSearch={this.search}/>
-        <button type="button" onclick={this.spotifyLogin()}>Click Me!</button>
+        <SearchBar  onSearch={this.search} />
+
         <div className="App-playlist">
         <SearchResults searchResults={this.state.searchResults}
                        onAdd={this.addTrack}
