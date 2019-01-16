@@ -1,7 +1,7 @@
 let accessToken;
 const accessUrl = "https://accounts.spotify.com/authorize";
 const clientId = '973bce2bf0a44737b365960870fa3cb6';
-const redirectUrl = 'http://localhost:3000/';
+const redirectUrl = 'jamalam.surge.sh';
 
 const Spotify = {
 
